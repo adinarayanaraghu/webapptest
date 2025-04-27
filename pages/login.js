@@ -24,4 +24,5 @@ export default function Login() {
       <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required style={{ width: '100%', padding: '8px', margin: '8px 0' }}/>
       <button type="submit" style={{ width: '100%', padding: '8px' }}>Login</button>
     </form>
+  );
 }
