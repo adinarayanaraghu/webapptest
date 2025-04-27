@@ -1,5 +1,5 @@
 {
-  "name": "vercel-auth-webapp",
+  "name": "vercel-lowdb-auth",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
@@ -8,11 +8,11 @@
   },
   "dependencies": {
     "bcryptjs": "latest",
-    "jsonwebtoken": "latest",
     "lowdb": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "cookie": "latest"
+    "cookie": "latest",
+    "jsonwebtoken": "latest"
   }
 }

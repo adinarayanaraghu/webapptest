@@ -6,25 +6,22 @@ export default function Dashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    async function fetchUser() {
-      const res = await fetch('/api/user');
-      if (res.ok) setUser((await res.json()).user);
-      else router.push('/login');
-    }
-    fetchUser();
+    fetch('/api/user').then(res => {
+      if (res.ok) return res.json();
+      throw new Error('Not auth');
+    }).then(data => setUser(data.user)).catch(() => router.push('/login'));
   }, [router]);
 
-  const logout = async () => {
-    await fetch('/api/logout');
-    router.push('/login');
-  };
+  function logout() {
+    fetch('/api/logout').then(() => router.push('/login'));
+  }
 
   if (!user) return <p>Loading...</p>;
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>Dashboard</h1>
-      <p>Welcome, {user.username}!</p>
-      <button onClick={logout} style={{ padding: '8px', marginTop: '20px' }}>Logout</button>
+    <div style={{ textAlign: 'center', marginTop: '100px' }}>
+      <h2>Dashboard</h2>
+      <p>Welcome, {user.username}</p>
+      <button onClick={logout} style={{ padding: '8px' }}>Logout</button>
     </div>
   );
 }
